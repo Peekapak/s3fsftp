@@ -51,7 +51,7 @@ if [ -n "${AWS_S3_SECRET_ACCESS_KEY}" ]; then
 fi
 
 DEBUG_OPTS=
-if [ $S3FS_DEBUG = "1" ]; then
+if [[ $S3FS_DEBUG = "1" ]]; then
     DEBUG_OPTS="-d -d"
 fi
 
