@@ -4,12 +4,11 @@
         {
             "name": "peekapak-sftp-ec2",
             "image": "329400224325.dkr.ecr.us-east-1.amazonaws.com/peekapak:peekapak-sftp",
-            "cpu": 0,
             "portMappings": [
                 {
-                    "name": "peekapak-sftp-22002-tcp",
-                    "containerPort": 22002,
-                    "hostPort": 22002,
+                    "name": "peekapak-sftp-ec2-port22",
+                    "containerPort": 22,
+                    "hostPort": 22,
                     "protocol": "tcp"
                 }
             ],
