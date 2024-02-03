@@ -1,7 +1,7 @@
 {
     "cluster": "cluster-peekapak-sftp-ec2",
     "serviceName": "service-peekapak-sftp-ec2",
-    "taskDefinition": "td-sftp-ec2:5",
+    "taskDefinition": "td-sftp-ec2:8",
     "serviceRegistries": [],
     "desiredCount": 1,
     "clientToken": "",
