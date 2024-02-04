@@ -7,7 +7,7 @@ set -e
 mount_path="${AWS_S3_MOUNT:-/opt/s3fs/bucket}"
 
 config_file=/etc/ssh/config.json
-if [[ ! -f $config_file ]] ; then
+if [[ ! -f "${config_file}" ]] ; then
     echo 'config.json is missing'
     exit 128
 fi
@@ -22,7 +22,7 @@ function bindmount() {
 
 # Loop over users and bind mount the directories, and set permissions and masks
 # on the specified folders from config.json.
-for row in $(jq -r '.users[] | @base64' $config_file); do
+for row in $(jq -r '.users[] | @base64' "${config_file}"); do
     _jq() {
         echo ${2} | base64 --decode | jq -r ${1}
     }
@@ -34,13 +34,13 @@ for row in $(jq -r '.users[] | @base64' $config_file); do
     gid=$(_jq '.gid' $row)
     folders=$(_jq '.folders' $row)
     group_name=$(getent group "${gid}" | cut -d":" -f1)
-    pubkeys=$(_jq '.publicKeys' $row)
+    pubkeys=$(_jq '.publicKeys' "${row}")
 
     echo "[SETUP USER ${username}]"
 
-    for folder_row in $(echo $folders | jq -r '.[] | @base64'); do
-        folder_path=$(_jq '.path' $folder_row)
-        mode=$(_jq '.umask' $folder_row)
+    for folder_row in $(echo "${folders}" | jq -r '.[] | @base64'); do
+        folder_path=$(_jq '.path' "${folder_row}")
+        mode=$(_jq '.umask' "${folder_row}")
 
         # Do the bind mount and set user's home permissions.
         echo "| ==> Mounting ${mount_path}/${username} to /home/${username}"
@@ -68,8 +68,8 @@ for row in $(jq -r '.users[] | @base64' $config_file); do
     chown "${uid}" "${ssh_dir}"
     chmod 700 "${ssh_dir}"
 
-    for publickey in $(echo $pubkeys | jq -r '.[] | @base64'); do
-        echo $(echo $publickey | base64 --decode) >> "${user_keys_allowed_file_tmp}"
+    for publickey in $(echo "${pubkeys}" | jq -r '.[] | @base64'); do
+        echo $(echo "${publickey}" | base64 --decode) >> "${user_keys_allowed_file_tmp}"
     done
 
     readme_file="${ssh_dir}/README.txt"
