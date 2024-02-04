@@ -1,15 +1,15 @@
 {
     "cluster": "cluster-peekapak-sftp-ec2",
     "serviceName": "service-peekapak-sftp-ec2",
-    "taskDefinition": "td-sftp-ec2:8",
+    "taskDefinition": "td-sftp-ec2:10",
     "serviceRegistries": [],
     "desiredCount": 1,
     "clientToken": "",
     "capacityProviderStrategy": [
         {
-            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-63bed248-EC2CapacityProvider-5YjKFSFQ1wRO",
+            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-63bed248-EC2CapacityProvider-24mPCfBLhh14",
             "weight": 1,
-            "base": 1
+            "base": 0
         }
     ],
     "role": "",

@@ -21,6 +21,10 @@
             },
             "secrets": [
                 {
+                    "name": "AWS_S3_MOUNT",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_MOUNT::"
+                },
+                {
                     "name": "AWS_S3_BUCKET",
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_BUCKET::"
                 },
@@ -67,10 +71,10 @@
     "requiresCompatibilities": [
         "EC2"
     ],
-    "cpu": "1024",
+    "cpu": "2048",
     "memory": "2048",
     "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
+        "cpuArchitecture": "ARM64",
         "operatingSystemFamily": "LINUX"
     }
 }

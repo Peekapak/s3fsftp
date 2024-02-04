@@ -1,6 +1,8 @@
 version: '3'
 services:
   sftp:
+    platform: linux/arm64
+    network_mode: host
     container_name: s3fsftp
     build: .
     restart: unless-stopped
@@ -28,4 +30,4 @@ services:
       SSH_HOST_RSA_KEY: '${SSH_HOST_RSA_KEY}'
       SSH_HOST_RSA_PUBLIC_KEY: '${SSH_HOST_RSA_PUBLIC_KEY}'
       S3FS_ARGS: '${S3FS_ARGS:-allow_other,mp_umask=002}'
-      S3FS_DEBUG: 0
+      S3FS_DEBUG: '${S3FS_DEBUG:-0}'
