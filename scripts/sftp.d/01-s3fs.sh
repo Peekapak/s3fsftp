@@ -65,7 +65,7 @@ s3fs ${DEBUG_OPTS} ${S3FS_ARGS} \
     -o url=${AWS_S3_URL} \
     -o endpoint=${AWS_S3_REGION} \
     -o allow_other \
-    -o mp_umask=000 \
+    -o mp_umask=002 \
     ${AWS_S3_BUCKET} ${AWS_S3_MOUNT}
 
 echo "Return code is ${?}"
