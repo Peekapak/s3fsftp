@@ -1,4 +1,4 @@
-FROM atmoz/sftp:debian
+FROM --platform=linux/arm64 atmoz_sftp:latest
 
 COPY scripts/setup /scripts
 COPY scripts/sftp.d /etc/sftp.d

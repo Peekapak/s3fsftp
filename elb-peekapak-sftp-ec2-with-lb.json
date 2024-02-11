@@ -1,0 +1,58 @@
+{
+    "cluster": "cluster-peekapak-sftp-ec2-nlb",
+    "serviceName": "service-peekapak-sftp-ec2-nlb",
+    "taskDefinition": "td-sftp-ec2:9",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:329400224325:targetgroup/tg-peekapak-sftp-port22-tcp/98d67a0e291b8363",
+            "containerName": "peekapak-sftp-ec2",
+            "containerPort": 22
+        }
+    ],
+    "serviceRegistries": [],
+    "desiredCount": 1,
+    "clientToken": "",
+    "capacityProviderStrategy": [
+        {
+            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-nlb-82fb2073-EC2CapacityProvider-RtEjmMLrsMPg",
+            "weight": 1,
+            "base": 1
+        }
+    ],
+    "role": "",
+    "deploymentConfiguration": {
+        "deploymentCircuitBreaker": {
+            "enable": true,
+            "rollback": true
+        },
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100
+    },
+    "placementConstraints": [],
+    "placementStrategy": [],
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-a0813fac",
+                "subnet-48dadb72",
+                "subnet-126b3d65",
+                "subnet-3c593265",
+                "subnet-9cd641f9",
+                "subnet-938419b8"
+            ],
+            "securityGroups": [
+                "sg-facedc9e"
+            ],
+            "assignPublicIp": "DISABLED"
+        }
+    },
+    "healthCheckGracePeriodSeconds": 0,
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    },
+    "tags": [],
+    "enableECSManagedTags": true,
+    "propagateTags": "NONE",
+    "enableExecuteCommand": true
+}

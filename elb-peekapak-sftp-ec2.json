@@ -1,0 +1,34 @@
+{
+    "cluster": "cluster-peekapak-sftp-ec2",
+    "serviceName": "service-peekapak-sftp-ec2",
+    "taskDefinition": "td-sftp-ec2:22",
+    "serviceRegistries": [],
+    "desiredCount": 1,
+    "clientToken": "",
+    "capacityProviderStrategy": [
+        {
+            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-63bed248-EC2CapacityProvider-m0NxozQqPCs9",
+            "weight": 1,
+            "base": 1
+        }
+    ],
+    "role": "",
+    "deploymentConfiguration": {
+        "deploymentCircuitBreaker": {
+            "enable": true,
+            "rollback": true
+        },
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100
+    },
+    "placementConstraints": [],
+    "placementStrategy": [],
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    },
+    "tags": [],
+    "enableECSManagedTags": true,
+    "propagateTags": "NONE",
+    "enableExecuteCommand": true
+}

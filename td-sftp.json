@@ -1,0 +1,83 @@
+{
+    "family": "td-sftp-ec2",
+    "containerDefinitions": [
+        {
+            "ulimits": [
+                {
+                    "name": "nofile",
+                    "softLimit": 65536,
+                    "hardLimit": 65536
+                }
+            ],
+            "name": "peekapak-sftp-ec2",
+            "image": "329400224325.dkr.ecr.us-east-1.amazonaws.com/peekapak:peekapak-sftp",
+            "portMappings": [
+                {
+                    "name": "peekapak-sftp-ec2-port22",
+                    "containerPort": 22,
+                    "hostPort": 22002,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "linuxParameters": {
+                "initProcessEnabled": true
+            },
+            "secrets": [
+                {
+                    "name": "AWS_S3_BUCKET",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_BUCKET::"
+                },
+                {
+                    "name": "AWS_S3_CREDENTIALS",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_CREDENTIALS::"
+                },
+                {
+                    "name": "AWS_S3_REGION",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_REGION::"
+                },
+                {
+                    "name": "AWS_S3_URL",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_URL::"
+                },
+                {
+                    "name": "SSH_HOST_ED25519_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:SSH_HOST_ED25519_KEY::"
+                },
+                {
+                    "name": "SSH_HOST_ED25519_PUBLIC_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:SSH_HOST_ED25519_PUBLIC_KEY::"
+                },
+                {
+                    "name": "USER_CONFIG",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:USER_CONFIG::"
+                }
+            ],
+            "privileged": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/td-sftp-ec2",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "taskRoleArn": "arn:aws:iam::329400224325:role/ecsTaskRole",
+    "executionRoleArn": "arn:aws:iam::329400224325:role/ecsTaskExecutionRole",
+    "networkMode": "bridge",
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "2048",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+    }
+}
