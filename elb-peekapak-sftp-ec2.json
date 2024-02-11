@@ -1,15 +1,15 @@
 {
     "cluster": "cluster-peekapak-sftp-ec2",
     "serviceName": "service-peekapak-sftp-ec2",
-    "taskDefinition": "td-sftp-ec2:10",
+    "taskDefinition": "td-sftp-ec2:22",
     "serviceRegistries": [],
     "desiredCount": 1,
     "clientToken": "",
     "capacityProviderStrategy": [
         {
-            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-63bed248-EC2CapacityProvider-24mPCfBLhh14",
+            "capacityProvider": "Infra-ECS-Cluster-cluster-peekapak-sftp-ec2-63bed248-EC2CapacityProvider-m0NxozQqPCs9",
             "weight": 1,
-            "base": 0
+            "base": 1
         }
     ],
     "role": "",
@@ -23,21 +23,6 @@
     },
     "placementConstraints": [],
     "placementStrategy": [],
-    "networkConfiguration": {
-        "awsvpcConfiguration": {
-            "subnets": [
-                "subnet-a0813fac",
-                "subnet-48dadb72",
-                "subnet-126b3d65",
-                "subnet-3c593265",
-                "subnet-9cd641f9",
-                "subnet-938419b8"
-            ],
-            "securityGroups": [
-                "sg-facedc9e"
-            ]
-        }
-    },
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
         "type": "ECS"

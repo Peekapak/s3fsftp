@@ -2,13 +2,20 @@
     "family": "td-sftp-ec2",
     "containerDefinitions": [
         {
+            "ulimits": [
+                {
+                    "name": "nofile",
+                    "softLimit": 65536,
+                    "hardLimit": 65536
+                }
+            ],
             "name": "peekapak-sftp-ec2",
             "image": "329400224325.dkr.ecr.us-east-1.amazonaws.com/peekapak:peekapak-sftp",
             "portMappings": [
                 {
                     "name": "peekapak-sftp-ec2-port22",
                     "containerPort": 22,
-                    "hostPort": 22,
+                    "hostPort": 22002,
                     "protocol": "tcp"
                 }
             ],
@@ -20,10 +27,6 @@
                 "initProcessEnabled": true
             },
             "secrets": [
-                {
-                    "name": "AWS_S3_MOUNT",
-                    "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_MOUNT::"
-                },
                 {
                     "name": "AWS_S3_BUCKET",
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:329400224325:secret:peekapak/sftp-i3MCD3:AWS_S3_BUCKET::"
@@ -67,7 +70,7 @@
     ],
     "taskRoleArn": "arn:aws:iam::329400224325:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::329400224325:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
+    "networkMode": "bridge",
     "requiresCompatibilities": [
         "EC2"
     ],
